@@ -15,8 +15,9 @@ public class question {
 		}
 	}
 	
-	public char getWordat(int i){
-		return this.word[i];
+	public String getWordat(int i){
+		String word = "";
+		return word += this.word[i];
 	}
 	
 	public void setProof(String p){

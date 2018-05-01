@@ -5,12 +5,15 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 
 import javax.swing.SwingConstants;
+import javax.swing.JTextPane;
 
 public class chafern extends JFrame {
 
@@ -26,10 +29,13 @@ public class chafern extends JFrame {
 	private JLabel six_lbl;
 	private int no;
 	private question quest;
+	private int k =0;
 	
-	public chafern(question[] q) {
+	public chafern(question[] q,int no) {
 		this.q = q;
-		quest =this.q[0];
+		quest =this.q[no];
+		no++;
+		this.no = no;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 488, 377);
 		contentPane = new JPanel();
@@ -77,6 +83,11 @@ public class chafern extends JFrame {
 		six_lbl.setBounds(362, 58, 51, 54);
 		contentPane.add(six_lbl);
 		
+		JTextPane textPane = new JTextPane();
+		textPane.setBounds(10, 103, 452, 45);
+		textPane.setText(quest.getProof());
+		contentPane.add(textPane);
+		
 		
 		char textOninput = 'A';
 		JButton input[] = new JButton[26];
@@ -92,13 +103,61 @@ public class chafern extends JFrame {
 	
 	private class ButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			ButtonListener x = new ButtonListener();
+			
+		
 			if(e.getSource() instanceof JButton){
-				if(((JButton)e.getSource()).getText().equals(q[no].getWordat(0))){
-					System.out.println("R");
+				if(k == 5) {
+					
+					chafern ch = new chafern(q,no);
+					ch.setquestion(no);
+					ch.setVisible(true);
+					dispose();
+				}else {
+					if(((JButton)e.getSource()).getText().equals(quest.getWordat(0))){
+						first_lbl.setText(quest.getWordat(0));
+						((JButton)e.getSource()).setEnabled(false);
+						k++;
+						
+					} if(((JButton)e.getSource()).getText().equals(quest.getWordat(1))){
+						two_lbl.setText(quest.getWordat(1));
+						((JButton)e.getSource()).setEnabled(false);
+						k++;
+						
+					} if(((JButton)e.getSource()).getText().equals(quest.getWordat(2))){
+						three_lbl.setText(quest.getWordat(2));
+						((JButton)e.getSource()).setEnabled(false);
+						k++;
+						
+					} if(((JButton)e.getSource()).getText().equals(quest.getWordat(3))){
+						four_lbl.setText(quest.getWordat(3));
+						((JButton)e.getSource()).setEnabled(false);
+						k++;
+						
+					} if(((JButton)e.getSource()).getText().equals(quest.getWordat(4))){
+						five_lbl.setText(quest.getWordat(4));
+						((JButton)e.getSource()).setEnabled(false);
+						k++;
+						
+					} if(((JButton)e.getSource()).getText().equals(quest.getWordat(5))){
+						six_lbl.setText(quest.getWordat(5));
+						((JButton)e.getSource()).setEnabled(false);
+						k++;
+					  
+					}
+					
+					if(no >= 7){
+						JOptionPane.showMessageDialog(null,"ยินดีด้วยคุณชนะและ");
+						dispose();
+					}
+					
 				}
+				
+				
 			}
 			
 		}
 	}	
+	public void setquestion(int i){
+		this.quest = q[i];
+	}
 }
