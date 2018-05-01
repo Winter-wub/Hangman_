@@ -14,6 +14,7 @@ import java.util.Random;
 
 import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
+import java.awt.Color;
 
 public class chafern extends JFrame {
 
@@ -32,13 +33,17 @@ public class chafern extends JFrame {
 	private int k =0;
 	
 	public chafern(question[] q,int no) {
+		
 		this.q = q;
-		quest =this.q[no];
+		quest = this.q[no];
 		no++;
 		this.no = no;
+		
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 488, 377);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.PINK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -84,6 +89,7 @@ public class chafern extends JFrame {
 		contentPane.add(six_lbl);
 		
 		JTextPane textPane = new JTextPane();
+		textPane.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		textPane.setBounds(10, 103, 452, 45);
 		textPane.setText(quest.getProof());
 		contentPane.add(textPane);
@@ -95,6 +101,7 @@ public class chafern extends JFrame {
 			input[i] = new JButton(""+textOninput+ "");
 			panel.add(input[i]);
 			input[i].addActionListener(new ButtonListener());
+			input[i].setBackground(Color.cyan);
 			textOninput++;
 		}
 		
